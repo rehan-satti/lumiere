@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LUMIÈRE - A World-Class Premium Fine Dining Experience. Luxury atmosphere, expert chefs, and signature dishes.">
+    <meta name="keywords" content="fine dining, luxury restaurant, premium food, LUMIÈRE, margherita pizza, wagyu burger">
+    <title>LUMIÈRE | Premium Fine Dining</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">LUMIÈRE</div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="progress-bar"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-utensils"></i>
+            LUMIÈRE
+        </div>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#features">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#reservation" class="nav-book-link">Book Table</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="theme-btn" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <a href="#hero">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#features">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#reservation">Book Table</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-overlay"></div>
+        <div class="floating-icon icon-1"><i class="fa-solid fa-burger"></i></div>
+        <div class="floating-icon icon-2"><i class="fa-solid fa-wine-glass"></i></div>
+        <div class="floating-icon icon-3"><i class="fa-solid fa-pizza-slice"></i></div>
+        <div class="floating-icon icon-4"><i class="fa-solid fa-cake-candles"></i></div>
+
+        <div class="hero-content">
+            <h1 class="reveal">The Art of Fine Dining</h1>
+            <p class="reveal">Experience culinary perfection in an atmosphere of luxury and elegance. Crafted with passion, served with excellence.</p>
+            <div class="hero-btns">
+                <button class="btn btn-primary" onclick="document.getElementById('menu').scrollIntoView()">View Menu</button>
+                <button class="btn btn-outline" onclick="document.getElementById('reservation').scrollIntoView()">Book Table</button>
+            </div>
+        </div>
+        <div class="scroll-indicator"><i class="fa-solid fa-chevron-down"></i></div>
+    </section>
+
+    <!-- Featured Dishes Section -->
+    <section id="menu">
+        <div class="section-header reveal">
+            <h2>Signature Selections</h2>
+            <p>From charcoal grills to artisanal pastries, explore our curated selection.</p>
+        </div>
+        
+        <div class="menu-grid">
+            <div class="dish-card reveal">
+                <div class="dish-img-container">
+                    <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&q=80&w=800" alt="Crispy Chicken Wrap" loading="lazy">
+                    <span class="category-badge">Fast Food</span>
+                    <div class="fav-icon"><i class="fa-regular fa-heart"></i></div>
+                </div>
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h3>Crispy Chicken Wrap</h3>
+                        <span class="dish-price">$18.00</span>
+                    </div>
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(4.9)</span></div>
+                    <p>Zesty grilled chicken with organic greens and house-made aioli.</p>
+                    <button class="btn btn-outline w-100 mt-3">Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="dish-card reveal">
+                <div class="dish-img-container">
+                    <img src="https://images.unsplash.com/photo-1585109649139-366815a0d713?auto=format&fit=crop&q=80&w=800" alt="Loaded Fries" loading="lazy">
+                    <span class="category-badge">Fast Food</span>
+                    <div class="fav-icon"><i class="fa-regular fa-heart"></i></div>
+                </div>
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h3>Loaded Truffle Fries</h3>
+                        <span class="dish-price">$14.00</span>
+                    </div>
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.7)</span></div>
+                    <p>Hand-cut potatoes drizzled with truffle oil and aged parmesan.</p>
+                    <button class="btn btn-outline w-100 mt-3">Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="dish-card reveal">
+                <div class="dish-img-container">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800" alt="BBQ Beef Ribs" loading="lazy">
+                    <span class="category-badge">BBQ</span>
+                    <div class="fav-icon"><i class="fa-regular fa-heart"></i></div>
+                </div>
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h3>BBQ Beef Ribs</h3>
+                        <span class="dish-price">$34.00</span>
+                    </div>
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(5.0)</span></div>
+                    <p>Slow-smoked prime ribs glazed with signature hickory sauce.</p>
+                    <button class="btn btn-outline w-100 mt-3">Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="dish-card reveal">
+                <div class="dish-img-container">
+                    <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=800" alt="Grilled BBQ Chicken" loading="lazy">
+                    <span class="category-badge">BBQ</span>
+                    <div class="fav-icon"><i class="fa-regular fa-heart"></i></div>
+                </div>
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h3>Grilled BBQ Chicken</h3>
+                        <span class="dish-price">$26.00</span>
+                    </div>
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i> <span>(4.2)</span></div>
+                    <p>Tender flame-grilled chicken thighs marinated in honey chipotle.</p>
+                    <button class="btn btn-outline w-100 mt-3">Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="dish-card reveal">
+                <div class="dish-img-container">
+                    <img src="https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?auto=format&fit=crop&q=80&w=800" alt="Margherita Pizza" loading="lazy">
+                    <span class="category-badge">Pizza</span>
+                    <div class="fav-icon"><i class="fa-regular fa-heart"></i></div>
+                </div>
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h3>Margherita Pizza</h3>
+                        <span class="dish-price">$22.00</span>
+                    </div>
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(4.9)</span></div>
+                    <p>Artisanal crust, San Marzano tomatoes, and buffalo mozzarella.</p>
+                    <button class="btn btn-outline w-100 mt-3">Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="dish-card reveal">
+                <div class="dish-img-container">
+                    <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&q=80&w=800" alt="Pepperoni Pizza" loading="lazy">
+                    <span class="category-badge">Pizza</span>
+                    <div class="fav-icon"><i class="fa-regular fa-heart"></i></div>
+                </div>
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h3>Pepperoni Pizza</h3>
+                        <span class="dish-price">$25.00</span>
+                    </div>
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(4.8)</span></div>
+                    <p>Double spiced pepperoni with a four-cheese Italian blend.</p>
+                    <button class="btn btn-outline w-100 mt-3">Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="dish-card reveal">
+                <div class="dish-img-container">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=800" alt="Classic Beef Burger" loading="lazy">
+                    <span class="category-badge">Burgers</span>
+                    <div class="fav-icon"><i class="fa-regular fa-heart"></i></div>
+                </div>
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h3>Classic Beef Burger</h3>
+                        <span class="dish-price">$21.00</span>
+                    </div>
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.6)</span></div>
+                    <p>Black Angus beef, caramelized onions, and secret Lumière sauce.</p>
+                    <button class="btn btn-outline w-100 mt-3">Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="dish-card reveal">
+                <div class="dish-img-container">
+                    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&q=80&w=800" alt="Double Cheese Burger" loading="lazy">
+                    <span class="category-badge">Burgers</span>
+                    <div class="fav-icon"><i class="fa-regular fa-heart"></i></div>
+                </div>
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h3>Double Cheese Burger</h3>
+                        <span class="dish-price">$28.00</span>
+                    </div>
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(4.9)</span></div>
+                    <p>Double wagyu patty with melted sharp aged cheddar layers.</p>
+                    <button class="btn btn-outline w-100 mt-3">Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="dish-card reveal">
+                <div class="dish-img-container">
+                    <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=80&w=800" alt="Fresh Mojito" loading="lazy">
+                    <span class="category-badge">Drinks</span>
+                    <div class="fav-icon"><i class="fa-regular fa-heart"></i></div>
+                </div>
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h3>Fresh Mojito</h3>
+                        <span class="dish-price">$12.00</span>
+                    </div>
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(5.0)</span></div>
+                    <p>Cold-pressed lime, muddled mint, and premium sparkling water.</p>
+                    <button class="btn btn-outline w-100 mt-3">Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="dish-card reveal">
+                <div class="dish-img-container">
+                    <img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&q=80&w=800" alt="Tropical Juice" loading="lazy">
+                    <span class="category-badge">Drinks</span>
+                    <div class="fav-icon"><i class="fa-regular fa-heart"></i></div>
+                </div>
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h3>Tropical Juice</h3>
+                        <span class="dish-price">$10.00</span>
+                    </div>
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i> <span>(4.1)</span></div>
+                    <p>Freshly squeezed pineapple, mango, and passion fruit fusion.</p>
+                    <button class="btn btn-outline w-100 mt-3">Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="dish-card reveal">
+                <div class="dish-img-container">
+                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&q=80&w=800" alt="Chocolate Lava Cake" loading="lazy">
+                    <span class="category-badge">Desserts</span>
+                    <div class="fav-icon"><i class="fa-regular fa-heart"></i></div>
+                </div>
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h3>Chocolate Lava Cake</h3>
+                        <span class="dish-price">$16.00</span>
+                    </div>
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(4.9)</span></div>
+                    <p>Decadent molten core served with Madagascar vanilla gelato.</p>
+                    <button class="btn btn-outline w-100 mt-3">Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="dish-card reveal">
+                <div class="dish-img-container">
+                    <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=800" alt="Strawberry Cheesecake" loading="lazy">
+                    <span class="category-badge">Desserts</span>
+                    <div class="fav-icon"><i class="fa-regular fa-heart"></i></div>
+                </div>
+                <div class="dish-info">
+                    <div class="dish-header">
+                        <h3>Strawberry Cheesecake</h3>
+                        <span class="dish-price">$15.00</span>
+                    </div>
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.8)</span></div>
+                    <p>Creamy New York style cheesecake with fresh wild berry glaze.</p>
+                    <button class="btn btn-outline w-100 mt-3">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="features">
+        <div class="section-header reveal">
+            <h2>The Lumière Standard</h2>
+            <p>Our commitment to quality defines your dining experience.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card reveal">
+                <div class="feature-icon"><i class="fa-solid fa-leaf"></i></div>
+                <h3>Fresh Ingredients</h3>
+                <p>Sourced daily from sustainable local organic farms.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon"><i class="fa-solid fa-utensils"></i></div>
+                <h3>Expert Chefs</h3>
+                <p>Award-winning culinary masters from across the globe.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                <h3>Fast Delivery</h3>
+                <p>Experience fine dining in the comfort of your own home.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon"><i class="fa-solid fa-gem"></i></div>
+                <h3>Premium Quality</h3>
+                <p>Unmatched standards in taste, presentation, and service.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon"><i class="fa-solid fa-hand-sparkles"></i></div>
+                <h3>Hygienic Kitchen</h3>
+                <p>Pristine environments following world-class health safety.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                <h3>24/7 Reservations</h3>
+                <p>Book your table anytime through our seamless platform.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="stats" class="reveal">
+        <div class="stat-item">
+            <h3 class="counter" data-target="50000" data-suffix="+">0</h3>
+            <p>Happy Customers</p>
+        </div>
+        <div class="stat-item">
+            <h3 class="counter" data-target="1200" data-suffix="+">0</h3>
+            <p>Dishes Served Daily</p>
+        </div>
+        <div class="stat-item">
+            <h3 class="counter" data-target="25" data-suffix="+">0</h3>
+            <p>Awards Won</p>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="section-header reveal">
+            <h2>Guest Experiences</h2>
+        </div>
+        <div class="testimonial-container reveal-scale">
+            <div class="testimonial-slider" id="slider">
+                <div class="testimonial-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974" class="customer-img" alt="Guest">
+                    <p>"Bohat zabardast khana aur service! Wagyu burger aur ambiance dono top class hain. Wah Cantt mein best dining experience."</p>
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <h4>Ahmed Hassan</h4>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974" class="customer-img" alt="Guest">
+                    <p>"Lumière ki atmosphere bohat premium hai. Family ke saath dinner kiya aur sab ne enjoy kiya. Highly recommended!"</p>
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <h4>Fatima Khan</h4>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974" class="customer-img" alt="Guest">
+                    <p>"Margherita pizza ka taste amazing tha. Fresh ingredients aur presentation dono perfect. Punjab ki best restaurant!"</p>
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <h4>Usman Ali</h4>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1974" class="customer-img" alt="Guest">
+                    <p>"Chocolate Lava Cake must try hai! Staff bohat cooperative hai. Special occasions ke liye ideal place in Wah Cantt."</p>
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <h4>Ayesha Malik</h4>
+                </div>
+            </div>
+            <div class="testimonial-controls">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation CTA -->
+    <section id="reservation" class="reveal">
+        <h2>Elegance Awaits You</h2>
+        <p style="margin-bottom: 40px; font-size: 1.2rem;">Join us for an unforgettable evening of culinary excellence.</p>
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+            <button class="btn btn-primary">Book A Table</button>
+            <button class="btn btn-outline">Get In Touch</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <div class="logo">LUMIÈRE</div>
+                <p>Defining the zenith of fine dining. Experience culinary artistry in Wah Cantt, Punjab, Pakistan.</p>
+                <div class="newsletter-ui mt-4">
+                    <p class="small">Subscribe to our newsletter</p>
+                    <div class="newsletter-input">
+                        <input type="email" placeholder="Email Address">
+                        <button aria-label="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="X (formerly Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#menu">Our Menu</a></li>
+                    <li><a href="#features">The Experience</a></li>
+                    <li><a href="#reservation">Book Table</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fa-solid fa-location-dot me-2"></i> Wah Cantt, Punjab, Pakistan</li>
+                    <li><i class="fa-solid fa-phone me-2"></i> <a href="tel:+923112345678">+92 311 2345678</a></li>
+                    <li><i class="fa-solid fa-envelope me-2"></i> info@lumiere.com</li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Working Hours</h4>
+                <ul>
+                    <li>Mon - Fri: 11:00 AM - 11:00 PM</li>
+                    <li>Sat - Sun: 09:00 AM - 12:00 AM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 LUMIÈRE PREMIUM DINING. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div id="backToTop">↑</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
