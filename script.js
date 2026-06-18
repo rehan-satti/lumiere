@@ -29,7 +29,7 @@ const menuData = [
     { id: 27, name: "Fresh Lemonade", category: "Drinks", price: 8.00, rating: 4.5, img: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&q=80&w=800", desc: "Homemade lemonade with mint and a touch of honey." },
     { id: 28, name: "Iced Coffee", category: "Drinks", price: 11.00, rating: 4.6, img: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&q=80&w=800", desc: "Cold brew coffee with vanilla cream and ice." },
     { id: 29, name: "Mango Lassi", category: "Drinks", price: 9.00, rating: 4.8, img: "https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?auto=format&fit=crop&q=80&w=800", desc: "Traditional Pakistani mango yogurt drink, chilled and creamy." },
-    { id: 30, name: "Sparkling Water", category: "Drinks", price: 6.00, rating: 4.2, img: "https://www.bing.com/th/id/OIP.lypZb50QU2_i-zKns6GMbQHaDt?w=193&h=135&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2?auto=compress&cs=tinysrgb&w=800", desc: "Premium sparkling water with a slice of fresh lemon." },
+    { id: 30, name: "Sparkling Water", category: "Drinks", price: 6.00, rating: 4.2, img: "https://www.bing.com/th/id/OIP.lypZb50QU2_i-zKns6GMbQHaDt?w=193&h=135&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2&auto=compress&cs=tinysrgb&w=800", desc: "Premium sparkling water with a slice of fresh lemon." },
     { id: 31, name: "Chocolate Lava Cake", category: "Desserts", price: 16.00, rating: 4.9, img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&q=80&w=800", desc: "Decadent molten core served with Madagascar vanilla gelato." },
     { id: 32, name: "Strawberry Cheesecake", category: "Desserts", price: 15.00, rating: 4.8, img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=800", desc: "Creamy New York style cheesecake with fresh wild berry glaze." },
     { id: 33, name: "Tiramisu", category: "Desserts", price: 14.00, rating: 4.7, img: "https://images.unsplash.com/photo-1586040140378-b5634cb4c8fc?auto=format&fit=crop&q=80&w=800", desc: "Classic Italian dessert with espresso-soaked layers and mascarpone." },
@@ -51,7 +51,7 @@ const updateCartUI = () => {
         b.style.display = totalItems > 0 ? 'flex' : 'none';
     });
 
-    const cartItemsEl = document.getElementById('cart-items');
+    const cartItemsEl = document.getElementById('cart-items-list');
     const cartTotalEl = document.getElementById('cart-total');
     if (!cartItemsEl) return;
 
@@ -62,6 +62,12 @@ const updateCartUI = () => {
                 <p>Your cart is empty</p>
                 <span>Add delicious dishes from our menu</span>
             </div>`;
+        // Reset checkout view if cart becomes empty
+        const formCont = document.getElementById('checkout-form-container');
+        const checkBtn = document.getElementById('checkout-btn');
+        if (formCont) formCont.classList.remove('active');
+        if (checkBtn) checkBtn.style.display = 'block';
+        if (cartItemsEl) cartItemsEl.style.display = 'block';
         if (cartTotalEl) cartTotalEl.textContent = '$0.00';
         return;
     }
@@ -140,6 +146,16 @@ const closeCartPanel = () => {
     document.getElementById('cart-panel')?.classList.remove('active');
     document.getElementById('cart-overlay')?.classList.remove('active');
     document.body.style.overflow = '';
+
+    // Reset to cart view after transition
+    setTimeout(() => {
+        const list = document.getElementById('cart-items-list');
+        const form = document.getElementById('checkout-form-container');
+        const btn = document.getElementById('checkout-btn');
+        if (list) list.style.display = 'block';
+        if (form) form.classList.remove('active');
+        if (btn) btn.style.display = 'block';
+    }, 400);
 };
 
 // ==================== LOADING SCREEN ====================
@@ -147,24 +163,24 @@ const loader = document.getElementById('loader');
 const loaderShown = sessionStorage.getItem('lumiereLoaderShown');
 const navEntries = performance.getEntriesByType('navigation');
 const isReload = navEntries.length > 0 && navEntries[0].type === 'reload';
-const isHomePage = !window.location.pathname.includes('menu.html');
+const isHomePage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('Restaurant/');
 
-if (loader && loaderShown && (!isReload || !isHomePage)) {
-    // If already shown and it's not a home-page reload, hide it immediately
-    loader.style.display = 'none';
-    loader.style.transition = 'none';
+// Immediately hide loader if not on the home page OR if it's already been shown and isn't a refresh
+if (loader) {
+    if (!isHomePage || (loaderShown && !isReload)) {
+        loader.style.display = 'none';
+        loader.style.transition = 'none';
+    }
 }
 
 window.addEventListener('load', () => {
     if (loader) {
-        if (!loaderShown || (isReload && isHomePage)) {
-            
+        // Show animation ONLY on home page for first-time session visit OR refresh
+        if (isHomePage && (!loaderShown || isReload)) {
             setTimeout(() => {
                 loader.style.opacity = '0';
                 setTimeout(() => loader.style.display = 'none', 800);
-            }, 3000);
-        } else {
-            loader.style.display = 'none';
+            }, 1500);
         }
     }
     sessionStorage.setItem('lumiereLoaderShown', 'true');
@@ -199,22 +215,19 @@ window.addEventListener('scroll', () => {
     if (nav) nav.classList.toggle('sticky', scrollPos > 50);
     if (progress) progress.style.width = height > 0 ? (scrollPos / height) * 100 + '%' : '0%';
 
-    // Hero Heading Parallax
-    const heroHeading = document.querySelector('#menu-hero h1');
-    if (heroHeading) {
-        const speed = 0.4;
-        heroHeading.style.transform = `translateY(${scrollPos * speed}px)`;
-    }
-
+    // Floating UI Visibility
     const btt = document.getElementById('backToTop');
-    if (btt) btt.style.display = scrollPos > 500 ? 'flex' : 'none';
+    const fCart = document.getElementById('floating-cart');
+    const isVisible = scrollPos > 300;
+
+    if (btt) btt.classList.toggle('visible', isVisible);
+    if (fCart) fCart.classList.toggle('visible', isVisible && cart.length > 0);
 });
 
 // ==================== MOBILE MENU ====================
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
 const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-const mobileMenuClose = document.getElementById('mobile-menu-close');
 
 if (hamburger && mobileMenu) {
     const openMenu = () => {
@@ -236,7 +249,6 @@ if (hamburger && mobileMenu) {
         mobileMenu.classList.contains('active') ? closeMenu() : openMenu();
     });
 
-    mobileMenuClose?.addEventListener('click', closeMenu);
     mobileMenuOverlay?.addEventListener('click', closeMenu);
     mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 
@@ -278,8 +290,8 @@ const revealObserver = new IntersectionObserver((entries) => {
             setTimeout(() => entry.target.classList.add('active'), delay);
             revealObserver.unobserve(entry.target);
         }
-    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
 document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
     revealObserver.observe(el);
@@ -445,7 +457,7 @@ const buildDishCard = (item, index) => {
     }
 
     return `
-        <div class="dish-card reveal" data-category="${item.category}" style="transition-delay: ${index * 0.05}s">
+        <div class="dish-card reveal" data-category="${item.category}" style="transition-delay: ${index * 0.03}s">
             <div class="dish-img-container">
                 <img src="${item.img}" srcset="${item.img.replace(/w=\d+/, 'w=400')} 400w, ${item.img.replace(/w=\d+/, 'w=800')} 800w, ${item.img.replace(/w=\d+/, 'w=1200')} 1200w" sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px" alt="${item.name}" loading="lazy">
                 <span class="category-badge">${item.category}</span>
@@ -511,19 +523,30 @@ window.resetFilters = () => {
 if (document.getElementById('menu-grid')) {
     applyMenuFilters();
 
+    const mobileCatSelect = document.getElementById('mobile-category-select');
+
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             activeFilter = btn.dataset.filter;
+            
+            // Sync mobile dropdown
+            if (mobileCatSelect) mobileCatSelect.value = activeFilter;
+
             applyMenuFilters();
         });
     });
 
-    const mobileCatSelect = document.getElementById('mobile-category-select');
     if (mobileCatSelect) {
         mobileCatSelect.addEventListener('change', (e) => {
             activeFilter = e.target.value;
+
+            // Sync desktop tabs
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.toggle('active', b.dataset.filter === activeFilter);
+            });
+
             applyMenuFilters();
         });
     }
@@ -607,7 +630,207 @@ document.addEventListener('click', (e) => {
     const removeBtn = e.target.closest('.cart-item-remove');
     if (removeBtn) removeFromCart(removeBtn.dataset.id);
 
+    // Checkout Toggle Logic
+    if (e.target.id === 'checkout-btn') {
+        if (cart.length === 0) return;
+        const list = document.getElementById('cart-items-list');
+        const form = document.getElementById('checkout-form-container');
+        const btn = document.getElementById('checkout-btn');
+        if (list) list.style.display = 'none';
+        if (form) form.classList.add('active');
+        if (btn) btn.style.display = 'none';
+    }
+
+    if (e.target.id === 'back-to-cart') {
+        const list = document.getElementById('cart-items-list');
+        const form = document.getElementById('checkout-form-container');
+        const btn = document.getElementById('checkout-btn');
+        if (list) list.style.display = 'block';
+        if (form) form.classList.remove('active');
+        if (btn) btn.style.display = 'block';
+    }
+
     if (e.target.closest('#floating-cart')) openCartPanel();
+});
+
+// ==================== FORM VALIDATION & SUBMISSION ====================
+
+const validateEmail = (email) => {
+    return String(email)
+        .toLowerCase()
+        .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+};
+
+const applyInvalidEffect = (el) => {
+    el.style.borderColor = '#ff4757';
+    el.classList.add('shake');
+    setTimeout(() => el.classList.remove('shake'), 400);
+};
+
+// Reservation Modal Toggles
+const resModal = document.getElementById('reservation-modal');
+document.getElementById('open-reservation')?.addEventListener('click', () => {
+    resModal?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+});
+document.getElementById('close-reservation')?.addEventListener('click', () => {
+    resModal?.classList.remove('active');
+    document.body.style.overflow = '';
+});
+resModal?.addEventListener('click', (e) => {
+    if (e.target.id === 'reservation-modal') {
+        resModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+// Reservation Form Logic
+let isReservationListenerAttached = false;
+
+const initReservationForm = () => {
+    const reservationForm = document.getElementById('reservation-form');
+    if (reservationForm && !isReservationListenerAttached) {
+        isReservationListenerAttached = true;
+        reservationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let isValid = true;
+            const formData = new FormData(reservationForm);
+            
+            const email = formData.get('email');
+            const date = new Date(formData.get('date'));
+            const today = new Date();
+            today.setHours(0,0,0,0);
+
+            if (!validateEmail(email)) {
+                applyInvalidEffect(reservationForm.querySelector('[name="email"]'));
+                isValid = false;
+            }
+
+            if (date < today) {
+                applyInvalidEffect(reservationForm.querySelector('[name="date"]'));
+                isValid = false;
+            }
+
+            if (isValid) {
+                const name = formData.get('name');
+                const modalBody = document.querySelector('.reservation-modal-content');
+                const originalHTML = modalBody.innerHTML;
+
+                modalBody.innerHTML = `
+                    <div class="reservation-success">
+                        <div class="success-icon">
+                            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                                <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                            </svg>
+                        </div>
+                        <h2>Reservation Sent!</h2>
+                        <p>Thank you, ${name}. We have received your request and will contact you shortly to confirm your table.</p>
+                    </div>
+                `;
+
+                setTimeout(() => {
+                    resModal?.classList.remove('active');
+                    document.body.style.overflow = '';
+                    // Reset modal content after it closes
+                    setTimeout(() => {
+                        isReservationListenerAttached = false; // Reset flag for new form
+                        modalBody.innerHTML = originalHTML;
+                        initReservationForm(); // Re-attach listener to newly created form
+                    }, 500);
+                }, 3500);
+            }
+        });
+    }
+};
+
+// Initialize reservation listener
+initReservationForm();
+
+// Payment Method Selection Logic
+const handlePaymentChange = (e) => {
+    const method = e.target.value;
+    const form = e.target.closest('form');
+    const detailsContainer = form.querySelector('.payment-details-container') || createPaymentDetailsContainer(form);
+    
+    detailsContainer.innerHTML = '';
+    detailsContainer.classList.remove('active');
+
+    if (method === 'paypal') {
+        detailsContainer.innerHTML = `<input type="email" name="pay_email" placeholder="PayPal Email Address" required>`;
+        detailsContainer.classList.add('active');
+    } else if (method === 'credit-card') {
+        detailsContainer.innerHTML = `
+            <input type="text" name="card_num" placeholder="Card Number (XXXX XXXX XXXX XXXX)" required>
+            <div style="display: flex; gap: 10px;">
+                <input type="text" name="card_exp" placeholder="MM/YY" required>
+                <input type="text" name="card_cvc" placeholder="CVC" required>
+            </div>`;
+        detailsContainer.classList.add('active');
+    } else if (method === 'easypaisa' || method === 'jazzcash') {
+        detailsContainer.innerHTML = `<input type="tel" name="acc_num" placeholder="Mobile Account Number" required>`;
+        detailsContainer.classList.add('active');
+    }
+};
+
+const createPaymentDetailsContainer = (form) => {
+    const div = document.createElement('div');
+    div.className = 'payment-details-container';
+    const select = form.querySelector('#payment-method');
+    select.parentNode.insertBefore(div, select.nextSibling);
+    return div;
+};
+
+// Checkout Form Logic
+document.addEventListener('submit', (e) => {
+    const checkoutForm = e.target.closest('#checkout-form');
+    if (checkoutForm) {
+        e.preventDefault();
+        let isValid = true;
+        
+        const nameInput = checkoutForm.querySelector('[name="name"]');
+        const phoneInput = checkoutForm.querySelector('[name="phone"]');
+        const addressInput = checkoutForm.querySelector('[name="address"]');
+        const paymentMethod = document.getElementById('payment-method');
+
+        if (nameInput.value.length < 3) {
+            applyInvalidEffect(nameInput);
+            isValid = false;
+        }
+
+        if (phoneInput.value.length < 10) {
+            applyInvalidEffect(phoneInput);
+            isValid = false;
+        }
+
+        if (addressInput.value.length < 10) {
+            applyInvalidEffect(addressInput);
+            isValid = false;
+        }
+        
+        const extraInputs = checkoutForm.querySelectorAll('.payment-details-container input');
+        extraInputs.forEach(input => {
+            if (!input.value) { applyInvalidEffect(input); isValid = false; }
+        });
+
+        if (!paymentMethod.value) {
+            applyInvalidEffect(paymentMethod);
+            isValid = false;
+        }
+
+        if (isValid) {
+            alert(`Thank you, ${nameInput.value}! Your order has been placed successfully.`);
+            cart = [];
+            updateCartUI();
+            closeCartPanel();
+            checkoutForm.reset();
+        }
+    }
+});
+
+// Attach payment change listener
+document.addEventListener('change', (e) => {
+    if (e.target.id === 'payment-method') handlePaymentChange(e);
 });
 
 // Modal close
