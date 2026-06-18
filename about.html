@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about the heritage, mission, and the masterminds behind LUMIÈRE Premium Fine Dining.">
+    <title>About Us | LUMIÈRE Premium Fine Dining</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="about-page">
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-logo"><i class="fa-solid fa-utensils"></i> LUMIÈRE</div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="progress-bar"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="index.html" class="logo">
+            <i class="fa-solid fa-utensils"></i>
+            LUMIÈRE
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html#reservation" class="nav-book-link">Book Table</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="theme-btn" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="index.html#reservation">Book Table</a>
+    </div>
+
+    <!-- About Hero -->
+    <section id="about-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="reveal">Our Culinary Odyssey</h1>
+            <p class="reveal">Where heritage meets haute cuisine. Born from a relentless pursuit of perfection, LUMIÈRE redefines the frontiers of modern gastronomy.</p>
+        </div>
+    </section>
+
+    <!-- Company Story Section -->
+    <section id="story">
+        <div class="story-container">
+            <div class="story-header reveal-left">
+                <span class="category-badge badge-inline">A Legacy Defined</span>
+                <h2>The Genesis of Taste</h2>
+            </div>
+            <div class="story-image reveal-right">
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=1200" alt="The Culinary Genesis of LUMIÈRE" loading="lazy">
+            </div>
+            <div class="story-text reveal-left">
+                <p class="story-lead">Established in 2009, LUMIÈRE emerged from a humble family bistro with an audacious dream: to elevate local ingredients into canvases of edible art.</p>
+                <p>For fifteen years, we have curated a sanctuary for the discerning palate, weaving time-honored techniques with avant-garde innovation. Every plate we serve is a chapter of our history—a testament to our heritage, our global inspirations, and an uncompromising devotion to the zenith of fine dining.</p>
+                
+                <div class="mission-vision-container mt-4">
+                    <div class="value-item">
+                        <div class="value-icon-box"><i class="fa-solid fa-bullseye"></i></div>
+                        <h3>Our Mission</h3>
+                        <p>To orchestrate an unparalleled sensory odyssey through culinary mastery and heartfelt hospitality.</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon-box"><i class="fa-solid fa-eye"></i></div>
+                        <h3>Our Vision</h3>
+                        <p>To serve as the global paragon of sustainable luxury dining, pioneering flavor exploration.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values Section -->
+    <section id="values">
+        <div class="section-header reveal">
+            <h2>Our Core Pillars</h2>
+            <p>The fundamental principles that guide every culinary creation and guest interaction.</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-card reveal" data-delay="0">
+                <div class="value-icon"><i class="fa-solid fa-palette"></i></div>
+                <h3>Epicurean Artistry</h3>
+                <p>We believe every plate is a canvas. Our chefs treat ingredients as medium, crafting visual and sensory masterpieces.</p>
+            </div>
+            <div class="value-card reveal" data-delay="150">
+                <div class="value-icon"><i class="fa-solid fa-seedling"></i></div>
+                <h3>Conscious Luxury</h3>
+                <p>Luxury shouldn't cost the earth. We prioritize hyper-local, sustainable sourcing to ensure a future for fine dining.</p>
+            </div>
+            <div class="value-card reveal" data-delay="300">
+                <div class="value-icon"><i class="fa-solid fa-handshake-simple"></i></div>
+                <h3>Unwavering Integrity</h3>
+                <p>From the kitchen to the table, transparency and honesty are the ingredients of our world-class service.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners & Awards Section -->
+    <section id="partners" class="reveal">
+        <div class="partners-bar">
+            <div class="partner-logo"><i class="fa-solid fa-award"></i> <span>Michelin Guide</span></div>
+            <div class="partner-logo"><i class="fa-solid fa-medal"></i> <span>James Beard</span></div>
+            <div class="partner-logo"><i class="fa-solid fa-certificate"></i> <span>Sustainable 50</span></div>
+            <div class="partner-logo"><i class="fa-solid fa-star"></i> <span>Forbes Travel</span></div>
+        </div>
+    </section>
+
+    <!-- Journey Timeline Section -->
+    <section id="journey-timeline">
+        <div class="section-header reveal">
+            <h2>A Journey of Distinction</h2>
+        </div>
+        <div class="timeline reveal mt-5">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2009</div>
+                <div class="timeline-content">
+                    <h4>The Inception</h4>
+                    <p>LUMIÈRE was established with a radical philosophy: that dining should be a transformative art form, not just a meal.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2014</div>
+                <div class="timeline-content">
+                    <h4>Global Recognition</h4>
+                    <p>Awarded our first accolades for flavor precision, validating our pursuit of excellence on the world stage.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2018</div>
+                <div class="timeline-content">
+                    <h4>The Flagship Landmark</h4>
+                    <p>Unveiled our architectural masterpiece in Wah Cantt, setting a new gold standard for regional luxury hospitality.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2024</div>
+                <div class="timeline-content">
+                    <h4>Sustainable Future</h4>
+                    <p>Celebrating fifteen years of mastery with a renewed focus on eco-conscious luxury and hyper-seasonal narratives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team">
+        <div class="section-header reveal">
+            <h2>The Visionary Conclave</h2>
+            <p>Meet the award-winning experts who bring the LUMIÈRE experience to your table every day.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card reveal-scale" data-delay="0">
+                <div class="team-img">
+                    <img src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?auto=format&fit=crop&q=80&w=600" alt="Executive Chef Zulfiqar Ahmed">
+                </div>
+                <div class="team-info">
+                    <h3>Chef Zulfiqar Ahmed</h3>
+                    <span>Executive Chef</span>
+                    <p>A veteran of the global haute cuisine circuit, Chef Zulfiqar commands our kitchen with surgical precision and a deep-rooted respect for local terroir.</p>
+                </div>
+            </div>
+            <div class="team-card reveal-scale" data-delay="150">
+                <div class="team-img">
+                    <img src="https://images.unsplash.com/photo-1581299894007-aaa50297cf16?auto=format&fit=crop&q=80&w=600" alt="Pastry Chef Asad Khan">
+                </div>
+                <div class="team-info">
+                    <h3>Chef Asad Khan</h3>
+                    <span>Pastry Specialist</span>
+                    <p>A virtuoso of the patisserie, Asad transforms simple sugars into intricate architectural marvels that challenge the boundaries of form.</p>
+                </div>
+            </div>
+            <div class="team-card reveal-scale" data-delay="300">
+                <div class="team-img">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600" alt="General Manager Fawad Chaudhry">
+                </div>
+                <div class="team-info">
+                    <h3>Fawad Chaudhry</h3>
+                    <span>General Manager</span>
+                    <p>The architect of the guest experience, Fawad oversees every detail to ensure the LUMIÈRE 'Gold Standard' remains an immutable promise.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Life at Lumière Section -->
+    <section id="life-at-lumiere">
+        <div class="section-header reveal">
+            <h2>Life at LUMIÈRE</h2>
+            <p>A glimpse behind the curtain at our vibrant culture and the daily pursuit of perfection.</p>
+        </div>
+        <div class="instagram-grid reveal">
+            <div class="insta-item">
+                <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=800" alt="Kitchen Prep">
+                <div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div>
+            </div>
+            <div class="insta-item">
+                <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&q=80&w=800" alt="Plating Detail">
+                <div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div>
+            </div>
+            <div class="insta-item">
+                <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?q=80&w=800" alt="Chef Team">
+                <div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div>
+            </div>
+            <div class="insta-item">
+                <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=800" alt="Cocktail Craft">
+                <div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div>
+            </div>
+            <div class="insta-item">
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800" alt="Fresh Ingredients">
+                <div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div>
+            </div>
+            <div class="insta-item">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=800" alt="Dining Room">
+                <div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join the Team CTA -->
+    <section id="join-team" class="reveal">
+        <div class="join-card">
+            <div class="join-content">
+                <h2>Join the Legacy</h2>
+                <p>Are you a culinary visionary or a hospitality expert? We are always looking for exceptional talent to join our conclave.</p>
+                <a href="contact.html" class="btn btn-outline">Explore Careers</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="stats" class="reveal">
+        <div class="stat-item">
+            <h3 class="counter" data-target="15" data-suffix="+">0</h3>
+            <p>Years of Mastery</p>
+        </div>
+        <div class="stat-item">
+            <h3 class="counter" data-target="50000" data-suffix="+">0</h3>
+            <p>Distinguished Guests</p>
+        </div>
+        <div class="stat-item">
+            <h3 class="counter" data-target="25" data-suffix="">0</h3>
+            <p>Accolades of Merit</p>
+        </div>
+        <div class="stat-item">
+            <h3 class="counter" data-target="12" data-suffix="">0</h3>
+            <p>Culinary Visionaries</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="reveal">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <div class="logo">LUMIÈRE</div>
+                <p>Defining the zenith of fine dining. Experience culinary artistry in Wah Cantt, Punjab, Pakistan.</p>
+                <div class="newsletter-ui mt-4">
+                    <p class="small">Subscribe to our newsletter</p>
+                    <div class="newsletter-input">
+                        <input type="email" placeholder="Email Address">
+                        <button aria-label="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="X (formerly Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="index.html#reservation">Book Table</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fa-solid fa-location-dot me-2"></i> Wah Cantt, Punjab, Pakistan</li>
+                    <li><i class="fa-solid fa-phone me-2"></i> <a href="tel:+923112345678">+92 311 2345678</a></li>
+                    <li><i class="fa-solid fa-envelope me-2"></i> info@lumiere.com</li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Working Hours</h4>
+                <ul>
+                    <li>Mon - Fri: 11:00 AM - 11:00 PM</li>
+                    <li>Sat - Sun: 09:00 AM - 12:00 AM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 LUMIÈRE PREMIUM DINING. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
