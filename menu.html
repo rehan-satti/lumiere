@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the LUMIÈRE Menu - A curated selection of world-class fine dining.">
+    <title>Menu | LUMIÈRE Premium Fine Dining</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Prevent flash of wrong theme (FOUT fix) -->
+    <script>!function(){var t=localStorage.getItem('lumiere-theme');if(t)document.documentElement.setAttribute('data-theme',t)}();</script>
+</head>
+<body class="menu-page">
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-logo"><i class="fa-solid fa-utensils"></i> LUMIÈRE</div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="progress-bar"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="index.html" class="logo">
+            <i class="fa-solid fa-utensils"></i>
+            LUMIÈRE
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html" class="active">Menu</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html#reservation" class="nav-book-link">Book Table</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="theme-btn" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="index.html#reservation">Book Table</a>
+    </div>
+
+    <!-- Menu Hero Section -->
+    <section id="menu-hero">
+        <div class="hero-overlay"></div>
+        <div class="floating-icon icon-1"><i class="fa-solid fa-shrimp"></i></div>
+        <div class="floating-icon icon-2"><i class="fa-solid fa-martini-glass-citrus"></i></div>
+        <div class="floating-icon icon-3"><i class="fa-solid fa-hotdog"></i></div>
+        <div class="floating-icon icon-4"><i class="fa-solid fa-ice-cream"></i></div>
+
+        <div class="hero-content">
+            <nav class="breadcrumb reveal">
+                <a href="index.html">Home</a> <span>/</span> <a href="#" class="active">Menu</a>
+            </nav>
+            <h1 class="reveal">Explore Our Delicious Menu</h1>
+            <p class="reveal">Savor the artistry of our master chefs through a curated selection of global flavors and premium ingredients.</p>
+        </div>
+    </section>
+
+    <!-- Search & Filter Section -->
+    <section id="menu-filters" class="reveal">
+        <div class="filter-container">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="menu-search" placeholder="Search for your favorite dish...">
+            </div>
+            
+            <div class="sort-box">
+                <i class="fa-solid fa-sort"></i>
+                <select id="menu-sort" aria-label="Sort dishes">
+                    <option value="default">Sort By: Default</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Top Rated</option>
+                    <option value="name-az">Name: A-Z</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="category-tabs">
+            <button class="filter-btn active" data-filter="all">All Items <span class="count">(36)</span></button>
+            <button class="filter-btn" data-filter="Fast Food">Fast Food <span class="count">(6)</span></button>
+            <button class="filter-btn" data-filter="BBQ">BBQ <span class="count">(6)</span></button>
+            <button class="filter-btn" data-filter="Pizza">Pizza <span class="count">(6)</span></button>
+            <button class="filter-btn" data-filter="Burgers">Burgers <span class="count">(6)</span></button>
+            <button class="filter-btn" data-filter="Drinks">Drinks <span class="count">(6)</span></button>
+            <button class="filter-btn" data-filter="Desserts">Desserts <span class="count">(6)</span></button>
+        </div>
+
+        <!-- Mobile Category Filter (Beautifully Styled Dropdown) -->
+        <div class="mobile-category-filter">
+            <i class="fa-solid fa-layer-group"></i>
+            <select id="mobile-category-select" aria-label="Select Category">
+                <option value="all">All Categories</option>
+                <option value="Fast Food">Fast Food</option>
+                <option value="BBQ">BBQ</option>
+                <option value="Pizza">Pizza</option>
+                <option value="Burgers">Burgers</option>
+                <option value="Drinks">Drinks</option>
+                <option value="Desserts">Desserts</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Menu Grid -->
+    <section id="menu-display">
+        <div class="section-header reveal">
+            <h2>Our Culinary Offerings</h2>
+            <p>Savor our signature dishes crafted with fresh ingredients and passion.</p>
+        </div>
+        <div id="menu-grid" class="menu-grid">
+            <!-- Items will be dynamically injected by JavaScript -->
+        </div>
+        
+        <!-- No Results Found State -->
+        <div id="no-results" class="no-results" style="display: none;">
+            <i class="fa-solid fa-utensils"></i>
+            <h3>No dishes found</h3>
+            <p>Try adjusting your search or filters to find what you're looking for.</p>
+            <button class="btn btn-outline mt-3" onclick="resetFilters()">Clear All Filters</button>
+        </div>
+    </section>
+
+    <!-- Featured Specials Section -->
+    <section id="featured-specials" class="reveal">
+        <div class="section-header">
+            <h2>Chef's Recommended</h2>
+            <p>The crown jewels of our kitchen, hand-picked for their exceptional flavor profiles.</p>
+        </div>
+        <div class="specials-layout">
+            <div class="special-banner">
+                <div class="special-content">
+                    <span class="badge-trending"><i class="fa-solid fa-fire"></i> Trending Dish</span>
+                    <h3>Signature BBQ Platter</h3>
+                    <p>An exquisite combination of our finest slow-smoked ribs, malai boti, and seekh kebabs served with artisanal dips.</p>
+                    <div class="price">$55.00</div>
+                    <button class="btn btn-primary">Order Now</button>
+                </div>
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1200" srcset="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600 600w, https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1200 1200w, https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1800 1800w" sizes="(max-width: 768px) 100vw, 50vw" alt="BBQ Platter" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="stats" class="reveal">
+        <div class="stat-item">
+            <h3 class="counter" data-target="36" data-suffix="">0</h3>
+            <p>Premium Dishes</p>
+        </div>
+        <div class="stat-item">
+            <h3 class="counter" data-target="1000" data-suffix="+">0</h3>
+            <p>Orders Daily</p>
+        </div>
+        <div class="stat-item">
+            <h3 class="counter" data-target="50000" data-suffix="+">0</h3>
+            <p>Happy Customers</p>
+        </div>
+        <div class="stat-item">
+            <h3 class="counter" data-target="15" data-suffix="+">0</h3>
+            <p>Years Excellence</p>
+        </div>
+    </section>
+
+    <!-- Full Width Responsive Footer -->
+    <footer id="contact" class="reveal">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <div class="logo">LUMIÈRE</div>
+                <p>Defining the zenith of fine dining. Experience culinary artistry in Wah Cantt, Punjab, Pakistan.</p>
+                <div class="newsletter-ui mt-4">
+                    <p class="small">Subscribe to our newsletter</p>
+                    <div class="newsletter-input">
+                        <input type="email" placeholder="Email Address">
+                        <button aria-label="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="X (formerly Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#menu-hero">Our Menu</a></li>
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="index.html#reservation">Book Table</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fa-solid fa-location-dot me-2"></i> Wah Cantt, Punjab, Pakistan</li>
+                    <li><i class="fa-solid fa-phone me-2"></i> <a href="tel:+923112345678">+92 311 2345678</a></li>
+                    <li><i class="fa-solid fa-envelope me-2"></i> info@lumiere.com</li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Working Hours</h4>
+                <ul>
+                    <li>Mon - Fri: 11:00 AM - 11:00 PM</li>
+                    <li>Sat - Sun: 09:00 AM - 12:00 AM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 LUMIÈRE PREMIUM DINING. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <!-- Quick View Modal -->
+    <div id="quick-view-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body">
+                <!-- Content injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="modal-overlay lightbox">
+        <button class="modal-close" id="close-lightbox" aria-label="Close Lightbox"><i class="fa-solid fa-xmark"></i></button>
+        <div class="lightbox-content">
+            <img src="" id="lightbox-img" alt="Enlarged Image">
+            <div id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- Floating Cart Button -->
+    <div class="floating-cart" id="floating-cart">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-badge">0</span>
+    </div>
+
+    <!-- Cart Toast -->
+    <div id="cart-toast" class="cart-toast"></div>
+
+    <!-- Cart Panel -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <aside class="cart-panel" id="cart-panel">
+        <div class="cart-panel-header">
+            <h3><i class="fa-solid fa-cart-shopping"></i> Your Order</h3>
+            <button class="cart-panel-close" id="close-cart" aria-label="Close cart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-panel-body">
+            <div id="cart-items-list"></div>
+            <div id="checkout-form-container" class="checkout-form-container">
+                <h4>Delivery Details</h4>
+                <form id="checkout-form">
+                    <input type="text" name="name" placeholder="Full Name" autocomplete="name" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" autocomplete="tel" required>
+                    <textarea name="address" placeholder="Delivery Address" rows="2" required></textarea>
+                    <select id="payment-method" required>
+                        <option value="">Select Payment Method</option>
+                        <option value="cash-on-delivery">Cash on Delivery</option>
+                        <option value="credit-card">Credit Card</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="easypaisa">EasyPaisa</option>
+                        <option value="jazzcash">JazzCash</option>
+                    </select>
+                    <div class="payment-details-container"></div>
+                    <button type="submit" class="btn btn-primary w-100">Confirm Order</button>
+                    <button type="button" id="back-to-cart" class="btn btn-outline w-100 mt-3">Back to Cart</button>
+                </form>
+            </div>
+        </div>
+        <div class="cart-panel-footer">
+            <div class="cart-total-row">
+                <span>Total</span>
+                <strong id="cart-total">$0.00</strong>
+            </div>
+            <button class="btn btn-primary w-100" id="checkout-btn">Checkout</button>
+        </div>
+    </aside>
+
+    <!-- Back to Top Button -->
+    <div id="backToTop">↑</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
