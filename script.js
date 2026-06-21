@@ -179,8 +179,8 @@ window.addEventListener('load', () => {
         if (isHomePage && (!loaderShown || isReload)) {
             setTimeout(() => {
                 loader.style.opacity = '0';
-                setTimeout(() => loader.style.display = 'none', 300);
-            }, 600);
+                setTimeout(() => loader.style.display = 'none', 900);
+            }, 1600);
         }
     }
     sessionStorage.setItem('lumiereLoaderShown', 'true');
