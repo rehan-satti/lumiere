@@ -180,8 +180,8 @@ window.addEventListener('load', () => {
         if (isHomePage && (!loaderShown || isReload)) {
             setTimeout(() => {
                 loader.style.opacity = '0';
-                setTimeout(() => loader.style.display = 'none', 1000);
-            }, 3500);
+                setTimeout(() => loader.style.display = 'none', 900);
+            }, 3600);
         }
     }
     sessionStorage.setItem('lumiereLoaderShown', 'true');
