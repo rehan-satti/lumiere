@@ -64,8 +64,8 @@ img { max-width: 100%; display: block; border-radius: 8px; }
 .cursor-follower { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: transform 0.15s ease; }
 
 /* Loader */
-#loader { position: fixed; inset: 0; background: #000; z-index: 10000; display: flex; justify-content: center; align-items: center;  opacity: 1;   transition: opacity 0.8s ease; }
-.loader-logo { font-size: 3rem; color: var(--primary); font-weight: bold; letter-spacing: 5px; animation: pulse 3s infinite; display: flex; align-items: center; gap: 20px; }
+#loader { position: fixed; inset: 0; background: #000; z-index: 10000; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease; }
+.loader-logo { font-size: 3rem; color: var(--primary); font-weight: bold; letter-spacing: 5px; animation: pulse 2s infinite; display: flex; align-items: center; gap: 20px; }
 @keyframes pulse { 0% { opacity: 0.3; transform: scale(0.95); } 50% { opacity: 1; transform: scale(1); } 100% { opacity: 0.5; transform: scale(0.95); } }
 
 
