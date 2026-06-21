@@ -159,21 +159,21 @@ const closeCartPanel = () => {
 };
 
 // ==================== LOADING SCREEN ====================
-const window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const loader = document.getElementById("loader");
 
   if (!loader) return;
 
-  // start fade out after 2 seconds
-  setTimeout(() => {
-    loader.style.opacity = "0";
-
-    // fully remove after fade animation
+  window.addEventListener("load", () => {
     setTimeout(() => {
-      loader.style.display = "none";
-    }, 800);
+      loader.style.opacity = "0";
 
-  }, 2000);
+      setTimeout(() => {
+        loader.style.display = "none";
+      }, 800);
+
+    }, 1500);
+  });
 });
 // ==================== CUSTOM CURSOR ====================
 const cursorEl = document.querySelector('.cursor');
