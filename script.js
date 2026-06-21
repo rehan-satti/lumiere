@@ -165,26 +165,26 @@ const navEntries = performance.getEntriesByType('navigation');
 const isReload = navEntries.length > 0 && navEntries[0].type === 'reload';
 const isHomePage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('Restaurant/');
 
-// Immediately hide loader if not on the home page OR if it's already been shown and isn't a refresh
 if (loader) {
+    // Check if we should skip the animation
     if (!isHomePage || (loaderShown && !isReload)) {
         loader.style.display = 'none';
-        loader.style.transition = 'none';
+    } else {
+        // Mark as shown so it doesn't run again on internal navigation
+        sessionStorage.setItem('lumiereLoaderShown', 'true');
+
+        // Wait 3000ms (3 seconds) before starting the fade-out
+        setTimeout(() => {
+            loader.style.opacity = '0';
+            
+            // Wait for the CSS transition (0.8s) to complete before hiding the element
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 800); 
+        }, 3000);
     }
 }
 
-window.addEventListener('load', () => {
-    if (loader) {
-        // Show animation ONLY on home page for first-time session visit OR refresh
-        if (isHomePage && (!loaderShown || isReload)) {
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => loader.style.display = 'none', 1000);
-            }, 3000);
-        }
-    }
-    sessionStorage.setItem('lumiereLoaderShown', 'true');
-});
 
 // ==================== CUSTOM CURSOR ====================
 const cursorEl = document.querySelector('.cursor');
