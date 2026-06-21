@@ -163,32 +163,45 @@ const closeCartPanel = () => {
 
 // ==================== LOADING SCREEN ====================
 const loader = document.getElementById('loader');
+const content = document.getElementById('content');
+
 const loaderShown = sessionStorage.getItem('lumiereLoaderShown');
+
 const navEntries = performance.getEntriesByType('navigation');
 const isReload = navEntries.length > 0 && navEntries[0].type === 'reload';
-const isHomePage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('Restaurant/');
+
+const path = window.location.pathname;
+
+const isHomePage =
+    path === '/' ||
+    path.endsWith('/index.html') ||
+    path.startsWith('/Restaurant/'); // ✅ GitHub Pages safe
 
 if (loader) {
-    // If not home page or if loader was already shown (and it's not a reload), hide it immediately
+
     if (!isHomePage || (loaderShown && !isReload)) {
         loader.style.display = 'none';
-    } else {
-        // Mark the loader as shown in session storage
+        content.style.display = 'block';
+    } 
+    else {
+
         sessionStorage.setItem('lumiereLoaderShown', 'true');
 
-        // Wait for 3000ms (3 seconds) to display the animation
         setTimeout(() => {
-            // Start the fade-out effect
+
             loader.style.opacity = '0';
-            
-            // Wait for 800ms (matching the CSS transition) before removing the element
+
             setTimeout(() => {
                 loader.style.display = 'none';
-            }, 800); 
-        }, 3000);
+
+                // ✅ show website
+                content.style.display = 'block';
+
+            }, 800);
+
+        }, 3000); // 3 seconds
     }
 }
-
 
 // ==================== CUSTOM CURSOR ====================
 const cursorEl = document.querySelector('.cursor');
