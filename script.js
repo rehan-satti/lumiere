@@ -163,46 +163,34 @@ const closeCartPanel = () => {
 
 // ==================== LOADING SCREEN ====================
 const loader = document.getElementById('loader');
-const content = document.getElementById('content');
-
 const loaderShown = sessionStorage.getItem('lumiereLoaderShown');
-
 const navEntries = performance.getEntriesByType('navigation');
 const isReload = navEntries.length > 0 && navEntries[0].type === 'reload';
-
-const path = window.location.pathname;
-
-const isHomePage =
-    path === '/' ||
-    path.endsWith('/index.html') ||
-    path.startsWith('/Restaurant/'); // ✅ GitHub Pages safe
+const isHomePage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('Restaurant/'); 
 
 if (loader) {
-
-    if (!isHomePage || (loaderShown && !isReload)) {
-        loader.style.display = 'none';
-        content.style.display = 'block';
-    } 
-    else {
-
-        sessionStorage.setItem('lumiereLoaderShown', 'true');
-
-        setTimeout(() => {
-
-            loader.style.opacity = '0';
-
-            setTimeout(() => {
-                loader.style.display = 'none';
-
-                // ✅ show website
-                content.style.display = 'block';
-
-            }, 800);
-
-        }, 3000); // 3 seconds
-    }
+    // 1. Agar Home page nahi hai, toh foran hide kar dein
+    if (!isHomePage) {
+        loader.style.display = 'none';
+    } 
+    // 2. Agar loader pehle dikh chuka hai aur reload nahi hai, toh hide kar dein
+    else if (loaderShown && !isReload) {
+        loader.style.display = 'none';
+    } 
+    // 3. Agar Home page hai aur pehli baar visit ya reload hai
+    else {
+        // Loader ko set kar dein
+        sessionStorage.setItem('lumiereLoaderShown', 'true');
+        
+        // Timeout ko fixed rakhein (3 seconds + 0.8s transition)
+        setTimeout(() => {
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 800); // Transition time (0.8s) ke barabar
+        }, 3000); 
+    }
 }
-
 // ==================== CUSTOM CURSOR ====================
 const cursorEl = document.querySelector('.cursor');
 const followerEl = document.querySelector('.cursor-follower');
